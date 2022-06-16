@@ -1,12 +1,69 @@
 // Variables
 $fontFamily:'Roboto',
 sans-serif;
+$blackColor:#2c2e31;
 
 body {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
     font-family: $fontFamily;
-    overflow-x: hidden;
-    background-color: aliceblue;
+}
+
+.user-profile-area {
+    padding: 60px 0;
+
+    .card {
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        border-radius: 15px;
+
+        .img1 {
+            img {
+                height: 200px;
+                border-top-right-radius: 15px;
+                border-top-left-radius: 15px;
+                width: 100%;
+            }
+        }
+
+        .img2 {
+            img {
+                position: relative;
+                display: block;
+                margin: 0 auto;
+                z-index: 1;
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+                border: 7px solid #fff;
+                margin-top: -80px;
+            }
+        }
+
+        .icon {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            color: lavender;
+
+            &:hover {
+                color: lightgreen;
+                transform: translateY(-20%);
+            }
+        }
+    }
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: none;
+}
+
+.btn.focus,
+.btn:focus {
+    outline: none;
+    box-shadow: none;
 }
