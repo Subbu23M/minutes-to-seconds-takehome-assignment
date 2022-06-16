@@ -6,3 +6,6 @@
 
 3)To install React Icons
   npm install react-icons --save
+
+4)To install sweetalert 
+  npm i sweetalert
