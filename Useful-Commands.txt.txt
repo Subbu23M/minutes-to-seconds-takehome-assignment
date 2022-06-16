@@ -1,0 +1,8 @@
+1)To install Sass
+  npm install node-sass
+
+2)To install axios
+  npm install axios
+
+3)To install React Icons
+  npm install react-icons --save
