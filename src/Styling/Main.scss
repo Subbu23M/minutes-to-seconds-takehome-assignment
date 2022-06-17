@@ -14,7 +14,9 @@ body {
     padding: 60px 0;
 
     .card {
+        // box-shadow:offset-x | offset-y | blur-radius | color
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        
         overflow: hidden;
         border-radius: 15px;
 
@@ -29,20 +31,30 @@ body {
 
         .img2 {
             img {
+                /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
                 position: relative;
+
                 display: block;
+
+                // margin:top bottom and left right
                 margin: 0 auto;
+
                 z-index: 1;
                 width: 140px;
                 height: 140px;
                 border-radius: 50%;
+
+                // border:size style color
                 border: 7px solid #fff;
+
                 margin-top: -80px;
             }
         }
 
         .icon {
+            //Transparent color in CSS makes background elements visible from another top element of the page.
             background: transparent;
+
             border: none;
             cursor: pointer;
             font-size: 2rem;

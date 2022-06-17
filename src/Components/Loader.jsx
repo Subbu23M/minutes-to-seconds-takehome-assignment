@@ -1,4 +1,3 @@
-import React from 'react';
 import spinner from '../Assets/Spinner.gif';
 
 const Loader = () => {

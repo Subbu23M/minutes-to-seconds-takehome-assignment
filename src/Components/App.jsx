@@ -13,11 +13,11 @@ import {
 } from 'react-icons/fa';
 
 const App = () => {
-    // To store array of objects
-    const[randomUserData,setRandomUserData] = useState([]);
-    const[title,setTitle] = useState('');
-    const[value,setValue] = useState('');
-    const[loading,setIsLoading] = useState(true);
+    // To store data
+    const [randomUserData, setRandomUserData] = useState([]);
+    const [title, setTitle] = useState('random user');
+    const [value, setValue] = useState('random value');
+    const [loading, setIsLoading] = useState(true);
 
     const baseURL = 'https://randomuser.me/api/';
 
@@ -28,11 +28,52 @@ const App = () => {
 
             // success
             .then((response) => {
-                const result = response.data.results;
-                console.log(result);
+                const result = response.data.results[0];
+                // console.log(result);
 
-                // Invoke State function
-                setRandomUserData(result);
+                const {
+                    large: image
+                } = result.picture;
+                const {
+                    first,
+                    last
+                } = result.name;
+                const {
+                    phone,
+                    email
+                } = result;
+                const {
+                    dob: {
+                        age
+                    }
+                } = result;
+                const {
+                    street: {
+                        number,
+                        name
+                    }
+                } = result.location;
+                const {
+                    password
+                } = result.login;
+
+                // Final Result
+                const randomUserDetails = {
+                    phone,
+                    email,
+                    image,
+                    password,
+                    first,
+                    last,
+                    age,
+                    street: `${number} ${name}`,
+                    name: `${first} ${last}`
+                }
+
+                // Invoke State functions
+                setRandomUserData(randomUserDetails);
+                setTitle('name');
+                setValue(randomUserData.name);
                 setIsLoading(!true);
             })
 
@@ -43,14 +84,15 @@ const App = () => {
     }
 
     //Invoke useEffect hook
-    useEffect(fetchData,[]); 
+    useEffect(fetchData, []);
 
     // Event Handler as calback function
-    const handleClick = ()=>{
-        const randomIndex = Math.floor(Math.random() * randomUserData.length);
-
-        const randomUserProfile = randomUserData[randomIndex];
-        console.log(randomUserProfile);
+    const handleHover = (e) => {
+        if (e.target.classList.contains('icon')) {
+            const newValue = e.target.dataset.label
+            setTitle(newValue)
+            setValue(randomUserData[newValue])
+        }
     }
 
     const finalResult = (
@@ -58,21 +100,21 @@ const App = () => {
 
             <div className="img1">
                 <img 
-                    src="https://randomuser.me/api/portraits/med/men/72.jpg" 
-                    alt="user" 
+                    src={randomUserData && randomUserData.image} 
+                    alt={randomUserData && randomUserData.name} 
                 />
             </div>
             <div className="img2">
                 <img 
-                    src="https://randomuser.me/api/portraits/med/men/72.jpg" 
-                    alt="user" 
+                    src={randomUserData && randomUserData.image} 
+                    alt={randomUserData && randomUserData.name}
                 />
             </div>
 
             <div className="card-body">
-                <div className="main-text text-center">
+                <div className="main-text text-center text-capitalize">
                     <h2>
-                        {title}
+                        my {title} is 
                     </h2>
                     <p>
                         {value}
@@ -82,31 +124,43 @@ const App = () => {
                 <div className="random-user-icons d-flex justify-content-around align-items-center mt-2">
                     <button
                         className='icon'
+                        data-label='name'
+                        onMouseOver={handleHover}
                     >
                         <FaUser/>
                     </button>
                     <button
                         className='icon'
+                        data-label='email'
+                        onMouseOver={handleHover}
                         >
                         <FaEnvelopeOpen/>
                     </button>
                     <button
                         className='icon'
+                        data-label='age'
+                        onMouseOver={handleHover}
                         >
                         <FaCalendarTimes/>
                     </button>
                     <button
                         className='icon'
+                        data-label='street'
+                        onMouseOver={handleHover}
                         >
                         <FaMap/>
                     </button>
                     <button
                         className='icon'
+                        data-label='phone'
+                        onMouseOver={handleHover}
                         >
                         <FaPhone/>
                     </button>
                     <button
                         className='icon'
+                        data-label='password'
+                        onMouseOver={handleHover}
                         >
                         <FaLock/>
                     </button>
@@ -123,7 +177,6 @@ const App = () => {
                     <div className="col-lg-6 mx-auto">
 
                         {/* Conditional Rendering - Ternary Operator */}
-                        {/* Child Component Instance */}
                         {
                             (loading) ? <Loader/> : finalResult
                         }
@@ -132,7 +185,7 @@ const App = () => {
                         >
                             <button
                                 className='random-user btn btn-primary'
-                                onClick={handleClick}
+                                onClick={fetchData}
                             >
                                 Random User 
                             </button>
