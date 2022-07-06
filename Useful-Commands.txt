@@ -21,4 +21,8 @@ Important Git branch commands.
 1)To list all branches - git branch
 2)To create branch - git branch branchName
 3)To switch to new branch - git checkout branchName.
-4)
+4)To merge two branches 
+  a)First move to base branch.
+  b)git merge baseBranch
+  c):wq
+  d)git push
