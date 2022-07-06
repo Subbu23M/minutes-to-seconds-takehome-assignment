@@ -9,3 +9,16 @@
 
 4)To install sweetalert 
   npm i sweetalert
+
+Firebase commands
+
+1)npm install -g firebase-tools
+2)firebase login
+3)firebase init
+4)firebase deploy
+
+Important Git branch commands.
+1)To list all branches - git branch
+2)To create branch - git branch branchName
+3)To switch to new branch - git checkout branchName.
+4)
