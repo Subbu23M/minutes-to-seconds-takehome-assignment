@@ -26,7 +26,7 @@ const App = () => {
         // To avoid flashes on screen
         const controller = new AbortController()
         axios
-            .get(baseURL)
+            .get(baseURL,{signal:controller.signal})
 
             // success
             .then((response) => {
