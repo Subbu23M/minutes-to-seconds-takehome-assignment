@@ -23,6 +23,8 @@ const App = () => {
 
     // AJAX Life Cycle
     const fetchData = () => {
+        // To avoid flashes on screen
+        const controller = new AbortController()
         axios
             .get(baseURL)
 
@@ -81,6 +83,7 @@ const App = () => {
             .catch((error) => {
                 swal(error.message);
             })
+        return () => controller.abort();
     }
 
     //Invoke useEffect hook
